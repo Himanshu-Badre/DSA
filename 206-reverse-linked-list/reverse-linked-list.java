@@ -18,6 +18,7 @@ class Solution {
     //     curr=temp;
     //    }
     //    return prev;
+    //iterative
     if(head==null || head.next==null){
         return head;
     }
@@ -26,4 +27,5 @@ class Solution {
     head.next=null;
     return a;
     }
+    //revurservly
 }
