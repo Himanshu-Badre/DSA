@@ -2,30 +2,29 @@ class Solution {
     public int evalRPN(String[] tokens) {
         Stack<Integer> stack = new Stack<>();
         for(int i=0; i<tokens.length; i++){
-          if(tokens[i].equals("+")){
-            int top=stack.pop();
-            int secondTop=stack.pop();
-            int result= top+secondTop;
-            stack.push(result);
-          }else if(tokens[i].equals("-")){
-            int top=stack.pop();
-            int secondTop= stack.pop();
-            int result= secondTop-top;
-            stack.push(result);
-          }else if(tokens[i].equals("*")){
-            int top= stack.pop();
-            int secondTop= stack.pop();
-            int result= top*secondTop;
-            stack.push(result);
-          }else if(tokens[i].equals("/")){
-            int top= stack.pop();
-            int secondTop=stack.pop();
-            int result=secondTop/top;
-            stack.push(result);
-          }else{
-            int num= Integer.parseInt(tokens[i]);
-            stack.push(num);
-          }
+            String token1 = tokens[i];
+            if(token1.equals("+") || token1.equals("-") || token1.equals("*") || token1.equals("/")){
+                int a=stack.pop();
+                int b=stack.pop();
+                if(token1.equals("+")){
+                    int result=b+a;
+                    stack.push(result);
+                }
+                if(token1.equals("-")){
+                    int result=b-a;
+                    stack.push(result);
+                }
+                if(token1.equals("*")){
+                    int result=b*a;
+                    stack.push(result);
+                }
+                if(token1.equals("/")){
+                    int result=b/a;
+                    stack.push(result);
+                }
+            }else{
+                stack.push(Integer.parseInt(token1));
+            }
         }
         return stack.pop();
     }
